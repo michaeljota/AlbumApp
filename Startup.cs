@@ -12,6 +12,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Npgsql.EntityFrameworkCore.PostgreSQL;
 
 namespace AlbumApp
 {
@@ -28,7 +29,9 @@ namespace AlbumApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AlbumContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("MovieContext"))
+                // options.UseSqlite(Configuration.GetConnectionString("Sqlite"))
+                // options.UseSqlServer(Configuration.GetConnectionString("LocalDB"))
+                options.UseNpgsql(Configuration.GetConnectionString("Postgres"))
             );
             services.AddMvc();
 
