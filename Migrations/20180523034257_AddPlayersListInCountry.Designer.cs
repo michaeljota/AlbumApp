@@ -11,9 +11,10 @@ using System;
 namespace AlbumApp.Migrations
 {
     [DbContext(typeof(AlbumContext))]
-    partial class AlbumContextModelSnapshot : ModelSnapshot
+    [Migration("20180523034257_AddPlayersListInCountry")]
+    partial class AddPlayersListInCountry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

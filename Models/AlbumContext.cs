@@ -8,5 +8,14 @@ namespace AlbumApp.Models
         public DbSet<Player> Players { get; set; }
 
         public AlbumContext(DbContextOptions<AlbumContext> options) : base(options) { }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Country>()
+                .HasMany(c => c.Players)
+                .WithOne()
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }
