@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AlbumApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace AlbumApp.Controllers
 {
@@ -12,7 +13,8 @@ namespace AlbumApp.Controllers
     {
         private AlbumContext Context { get; }
 
-        public CountriesController(AlbumContext context) {
+        public CountriesController(AlbumContext context)
+        {
             Context = context;
         }
 
@@ -20,7 +22,7 @@ namespace AlbumApp.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(Context.Countries.ToList());
+            return Ok(Context.Countries.Include(c => c.Players).ToList());
         }
     }
 }

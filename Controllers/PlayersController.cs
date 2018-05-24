@@ -17,36 +17,18 @@ namespace AlbumApp.Controllers
             Context = context;
         }
 
-        // GET api/players
-        [HttpGet]
-        public IActionResult GetAll()
-        {
-            return Ok(Context.Players.ToList());
-        }
-
         // GET api/players/5
         [HttpGet("{id}", Name = "GetPlayer")]
         public IActionResult Get(int id)
         {
             Player result = Context.Players.Find(id);
+            
             if (result == null)
             {
                 return NotFound();
             }
-            return Ok(result);
-        }
 
-        // POST api/players
-        [HttpPost]
-        public IActionResult Post([FromBody] Player model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest();
-            }
-            Context.Players.Add(model);
-            Context.SaveChanges();
-            return CreatedAtRoute("GetPlayer", new { id = model.ID }, model);
+            return Ok(result);
         }
 
         // PUT api/players/5
